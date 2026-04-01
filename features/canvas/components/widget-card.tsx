@@ -35,12 +35,9 @@ export function WidgetCard({
       )}
     >
       <CardHeader
-        className={cn(
-          "flex flex-col gap-1",
-          borderBottom && "border-b",
-        )}
+        className={cn("flex flex-col gap-1", borderBottom && "border-b")}
       >
-        <div className="flex items-center justify-between">
+        <div className="w-full flex items-center justify-between">
           <div className="flex items-center gap-2">
             <HugeiconsIcon
               icon={icon}

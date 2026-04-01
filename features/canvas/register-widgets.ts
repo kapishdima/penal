@@ -3,6 +3,7 @@
 import "./components/placeholder-widget";
 import "@/features/bookmarks/components/bookmarks-widget";
 import "@/features/github/components/github-graph-widget";
+import "@/features/github/components/github-notifications-widget";
 import "@/features/habits/components/habits-widget";
 import "@/features/money/components/money-widget";
 import "@/features/notes/components/notes-widget";

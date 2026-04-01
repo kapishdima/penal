@@ -18,6 +18,7 @@ function createAuth() {
       github: {
         clientId: process.env.GITHUB_CLIENT_ID!,
         clientSecret: process.env.GITHUB_CLIENT_SECRET!,
+        scope: ["read:user", "user:email", "notifications"],
       },
     },
     plugins: [nextCookies()],

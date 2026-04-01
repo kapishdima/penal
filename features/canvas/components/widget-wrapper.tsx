@@ -75,7 +75,7 @@ export function WidgetWrapper({
           data-no-drag
           variant="destructive"
           size="icon"
-          className="absolute -top-3 -right-3 z-20"
+          className="absolute -top-3 -right-3 z-20 bg-red-100"
           aria-label="Remove widget"
           onPointerDown={(e) => e.stopPropagation()}
           onClick={() => removeWidget(widgetId)}
