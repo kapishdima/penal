@@ -8,6 +8,7 @@ import { Field, FieldLabel } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 import { authClient } from "@/lib/auth-client";
 import { AuthIllustration } from "../_components/auth-illustration";
+import { GitHubSignInButton } from "../_components/github-button";
 
 export default function LoginPage() {
   const router = useRouter();
@@ -102,6 +103,16 @@ export default function LoginPage() {
               {loading ? "Signing in..." : "Sign in"}
             </Button>
           </form>
+
+          <div className="mt-4 flex items-center gap-3">
+            <div className="h-px flex-1 bg-border" />
+            <span className="text-xs text-muted-foreground">or</span>
+            <div className="h-px flex-1 bg-border" />
+          </div>
+
+          <div className="mt-4">
+            <GitHubSignInButton />
+          </div>
 
           <p className="mt-6 text-sm text-muted-foreground">
             Don&apos;t have an account?{" "}

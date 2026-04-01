@@ -14,6 +14,12 @@ function createAuth() {
       enabled: true,
       minPasswordLength: 8,
     },
+    socialProviders: {
+      github: {
+        clientId: process.env.GITHUB_CLIENT_ID!,
+        clientSecret: process.env.GITHUB_CLIENT_SECRET!,
+      },
+    },
     plugins: [nextCookies()],
   });
 }
