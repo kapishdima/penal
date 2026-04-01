@@ -1,10 +1,14 @@
 "use client";
 
+import { Delete02Icon } from "@hugeicons/core-free-icons";
+import { HugeiconsIcon } from "@hugeicons/react";
 import { useAtomValue } from "jotai";
+import { Button } from "@/components/ui/button";
 import { useWidgetDrag } from "@/features/canvas/hooks/use-widget-drag";
 import { cn } from "@/lib/utils";
 import { widgetsAtom } from "@/stores/canvas";
 import { HANDLE_CURSORS, HANDLE_POSITIONS, RESIZE_HANDLES } from "../config";
+import { useRemoveWidget } from "../hooks/use-remove-widget";
 import { useWidgetResize } from "../hooks/use-widget-resize";
 
 export type ChildrenProps = {
@@ -39,6 +43,7 @@ export function WidgetWrapper({
 
   const { onDragStart, onDragMove, onDragEnd, isSelected, isPanning } =
     useWidgetDrag(widget);
+  const removeWidget = useRemoveWidget();
 
   if (!widget) return null;
 
@@ -64,6 +69,19 @@ export function WidgetWrapper({
       <div className="w-full h-full overflow-hidden rounded-xl no-scrollbar">
         {children({ widgetId, isSelected, isPanning })}
       </div>
+
+      {isSelected && (
+        <Button
+          data-no-drag
+          variant="destructive"
+          size="icon"
+          className="absolute -top-3 -right-3 z-20 bg-red-100 hover:bg-150"
+          onPointerDown={(e) => e.stopPropagation()}
+          onClick={() => removeWidget(widgetId)}
+        >
+          <HugeiconsIcon icon={Delete02Icon} size={24} />
+        </Button>
+      )}
 
       {isSelected &&
         RESIZE_HANDLES.map((handle) => (

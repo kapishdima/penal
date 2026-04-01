@@ -1,10 +1,18 @@
 "use client";
 
 import { useAtomValue } from "jotai";
+import { useEventListener } from "@/hooks/use-event-listener";
+import { isInputFocused } from "@/lib/event";
 import { cn } from "@/lib/utils";
-import { canvasOffsetAtom, isPanningAtom, widgetsAtom } from "@/stores/canvas";
+import {
+  canvasOffsetAtom,
+  isPanningAtom,
+  selectedWidgetIdAtom,
+  widgetsAtom,
+} from "@/stores/canvas";
 import { useCanvasDeselect } from "../hooks/use-canvas-deselect";
 import { useCanvasPanning } from "../hooks/use-canvas-panning";
+import { useRemoveWidget } from "../hooks/use-remove-widget";
 import { useSpacePanning } from "../hooks/use-space-panning";
 import { widgetRegistry } from "../widget-registry";
 import { CanvasGrid } from "./canvas-grid";
@@ -15,9 +23,19 @@ export function Canvas() {
   const widgets = useAtomValue(widgetsAtom);
   const isPanning = useAtomValue(isPanningAtom);
 
+  const selectedId = useAtomValue(selectedWidgetIdAtom);
+  const removeWidget = useRemoveWidget();
+
   const { handlers } = useCanvasPanning();
   const onCanvasPointerDown = useCanvasDeselect();
   useSpacePanning();
+
+  useEventListener("keydown", (e) => {
+    if ((e.key === "Delete" || e.key === "Backspace") && selectedId && !isInputFocused()) {
+      e.preventDefault();
+      removeWidget(selectedId);
+    }
+  });
 
   return (
     /* biome-ignore lint/a11y/noStaticElementInteractions: canvas surface requires pointer events for panning */
