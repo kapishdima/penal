@@ -1,8 +1,13 @@
 "use client";
 
-import { Delete02Icon } from "@hugeicons/core-free-icons";
+import {
+  Delete02Icon,
+  SquareLock02Icon,
+  SquareUnlock02Icon,
+} from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
-import { useAtomValue } from "jotai";
+import { useAtomValue, useSetAtom } from "jotai";
+import { useCallback } from "react";
 import { Button } from "@/components/ui/button";
 import { useWidgetDrag } from "@/features/canvas/hooks/use-widget-drag";
 import { cn } from "@/lib/utils";
@@ -33,6 +38,7 @@ export function WidgetWrapper({
   minHeight = 120,
 }: WidgetWrapperProps) {
   const widgets = useAtomValue(widgetsAtom);
+  const setWidgets = useSetAtom(widgetsAtom);
   const widget = widgets.find((w) => w.id === widgetId);
 
   const { onResizeStart, onResizeMove, onResizeEnd } = useWidgetResize(
@@ -45,11 +51,21 @@ export function WidgetWrapper({
     useWidgetDrag(widget);
   const removeWidget = useRemoveWidget();
 
+  const toggleLock = useCallback(() => {
+    setWidgets((prev) =>
+      prev.map((w) =>
+        w.id === widgetId ? { ...w, locked: !w.locked } : w,
+      ),
+    );
+  }, [widgetId, setWidgets]);
+
   if (!widget) return null;
+
+  const isLocked = widget.locked ?? false;
 
   return (
     <div
-      className={cn("absolute select-none")}
+      className={cn("absolute select-none", isLocked && "opacity-90")}
       style={{
         left: widget.x,
         top: widget.y,
@@ -57,34 +73,60 @@ export function WidgetWrapper({
         height: widget.height,
       }}
       onPointerDown={onDragStart}
-      onPointerMove={(e) => {
-        onDragMove(e);
-        onResizeMove(e);
-      }}
-      onPointerUp={() => {
-        onDragEnd();
-        onResizeEnd();
-      }}
+      onPointerMove={
+        isLocked
+          ? undefined
+          : (e) => {
+              onDragMove(e);
+              onResizeMove(e);
+            }
+      }
+      onPointerUp={
+        isLocked
+          ? undefined
+          : () => {
+              onDragEnd();
+              onResizeEnd();
+            }
+      }
     >
       <div className="w-full h-full overflow-hidden rounded-xl no-scrollbar">
         {children({ widgetId, isSelected, isPanning })}
       </div>
 
       {isSelected && (
-        <Button
-          data-no-drag
-          variant="destructive"
-          size="icon"
-          className="absolute -top-3 -right-3 z-20 bg-red-100"
-          aria-label="Remove widget"
-          onPointerDown={(e) => e.stopPropagation()}
-          onClick={() => removeWidget(widgetId)}
-        >
-          <HugeiconsIcon icon={Delete02Icon} size={24} />
-        </Button>
+        <>
+          <Button
+            data-no-drag
+            variant="destructive"
+            size="icon"
+            className="absolute -top-3 -right-3 z-20"
+            aria-label="Remove widget"
+            onPointerDown={(e) => e.stopPropagation()}
+            onClick={() => removeWidget(widgetId)}
+          >
+            <HugeiconsIcon icon={Delete02Icon} size={24} />
+          </Button>
+
+          <Button
+            data-no-drag
+            variant="secondary"
+            size="icon-xs"
+            className="absolute -top-2.5 -left-2.5 z-20 rounded-full size-6"
+            aria-label={isLocked ? "Unlock widget" : "Lock widget"}
+            onPointerDown={(e) => e.stopPropagation()}
+            onClick={toggleLock}
+          >
+            <HugeiconsIcon
+              icon={isLocked ? SquareLock02Icon : SquareUnlock02Icon}
+              size={14}
+            />
+          </Button>
+        </>
       )}
 
       {isSelected &&
+        !isLocked &&
         RESIZE_HANDLES.map((handle) => (
           <div
             key={handle}

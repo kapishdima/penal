@@ -19,7 +19,7 @@ type DragState = {
   startWidgetY: number;
 };
 
-type WidgetState = { id: string; x: number; y: number };
+type WidgetState = { id: string; x: number; y: number; locked?: boolean };
 
 export const useWidgetDrag = (widget: WidgetState | undefined) => {
   const [selectedId, setSelectedId] = useAtom(selectedWidgetIdAtom);
@@ -43,6 +43,8 @@ export const useWidgetDrag = (widget: WidgetState | undefined) => {
 
       e.stopPropagation();
       setSelectedId(widget.id);
+
+      if (widget.locked) return;
 
       dragState.current = {
         startX: e.clientX,

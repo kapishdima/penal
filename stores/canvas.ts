@@ -10,6 +10,7 @@ export interface WidgetInstance {
   y: number;
   width: number;
   height: number;
+  locked?: boolean;
 }
 
 export const canvasOffsetAtom = atomWithStorage("penal:canvas-offset", {

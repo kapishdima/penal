@@ -19,9 +19,9 @@ export function useWheelNavigation() {
   useEventListener(
     "wheel",
     (e) => {
-      // Don't intercept scroll inside overlays (command palette, dropdowns, etc.)
+      // Don't intercept scroll inside widgets or overlays
       const target = e.target as HTMLElement;
-      if (target.closest("[data-slot=dialog-content], [data-slot=dropdown-menu-content], [data-slot=command-list]")) {
+      if (target.closest("[data-no-drag], [data-slot=dialog-content], [data-slot=dropdown-menu-content], [data-slot=command-list]")) {
         return;
       }
 
