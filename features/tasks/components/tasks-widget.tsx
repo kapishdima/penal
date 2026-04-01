@@ -91,7 +91,7 @@ function TasksWidget({ widgetId, isSelected, isPanning }: ChildrenProps) {
             <div
               key={task.id}
               className={cn(
-                "group flex items-center gap-2 rounded-lg px-2 py-1.5 hover:bg-muted/50 transition-colors",
+                "group flex items-center gap-2 rounded-full px-2 py-1.5 hover:bg-muted/50 transition-colors",
                 task.done && "opacity-50",
               )}
             >
@@ -136,7 +136,7 @@ function TasksWidget({ widgetId, isSelected, isPanning }: ChildrenProps) {
         </div>
 
         <form onSubmit={onSubmit} data-no-drag>
-          <InputGroup className="w-full text-sm  bg-input/25">
+          <InputGroup className="w-full text-sm bg-input/25">
             <InputGroupInput
               type="text"
               value={input}
