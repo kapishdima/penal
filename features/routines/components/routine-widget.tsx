@@ -3,6 +3,7 @@
 import {
   Delete02Icon,
   Moon02Icon,
+  NoteAddIcon,
   Sun03Icon,
 } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
@@ -82,9 +83,17 @@ function RoutineWidget({
       <CardContent className="px-0 flex-1 flex flex-col min-h-0">
         <div className="flex-1 min-h-0 overflow-y-auto py-1" data-no-drag>
           {items.length === 0 && (
-            <p className="text-xs text-muted-foreground/50 text-center py-4 italic">
-              Add routine items
-            </p>
+            <div className="flex flex-col flex-1 h-full justify-center items-center text-muted-foreground/50 ">
+              <HugeiconsIcon
+                icon={NoteAddIcon}
+                size={24}
+                color="currentColor"
+                strokeWidth={1.5}
+              />
+              <p className="text-md text-center py-2 font-medium">
+                Add routine items
+              </p>
+            </div>
           )}
           {items.map((item) => (
             <div

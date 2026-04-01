@@ -10,13 +10,16 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Kbd } from "@/components/ui/kbd";
 import { snapEnabledAtom } from "@/stores/canvas";
+import { UserMenu } from "./user-menu";
 
 export function CanvasToolbar() {
   const [snapEnabled, setSnapEnabled] = useAtom(snapEnabledAtom);
 
   return (
     <Card className="absolute bottom-4 left-1/2 -translate-x-1/2 z-20 py-2 px-2">
-      <CardContent className="flex flex-row items-center gap-x-4 p-0">
+      <CardContent className="flex flex-row items-center gap-x-3 p-0">
+        <UserMenu />
+        <div className="w-px h-4 bg-border" />
         <Button
           onClick={() => setSnapEnabled((v) => !v)}
           variant={snapEnabled ? "default" : "secondary"}
