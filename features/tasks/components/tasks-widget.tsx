@@ -144,11 +144,12 @@ function TasksWidget({ widgetId, isSelected, isPanning }: ChildrenProps) {
               placeholder="Add a task..."
               className="placeholder:text-muted-foreground/50"
             />
-            <InputGroupAddon align="inline-end">
+            <InputGroupAddon align="inline-end" className="pr-0">
               <InputGroupButton
                 variant="default"
                 className="text-xs"
                 type="submit"
+                size="sm"
                 disabled={!input.trim()}
               >
                 Create

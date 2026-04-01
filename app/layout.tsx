@@ -7,6 +7,7 @@ import {
   Manrope,
 } from "next/font/google";
 import "./globals.css";
+import { ThemeProvider } from "next-themes";
 import { cn } from "@/lib/utils";
 
 const firaCodeFiraCode = Fira_Code({
@@ -64,6 +65,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
+      suppressHydrationWarning
       className={cn(
         "h-full",
         "antialiased",
@@ -74,7 +76,11 @@ export default function RootLayout({
         firaCodeFiraCode.variable,
       )}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+          {children}
+        </ThemeProvider>
+      </body>
     </html>
   );
 }

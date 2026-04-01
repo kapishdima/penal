@@ -10,6 +10,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Kbd } from "@/components/ui/kbd";
 import { snapEnabledAtom } from "@/stores/canvas";
+import { ThemeToggle } from "./theme-toggle";
 import { UserMenu } from "./user-menu";
 
 export function CanvasToolbar() {
@@ -33,9 +34,11 @@ export function CanvasToolbar() {
           />
         </Button>
         <div className="w-px h-4 bg-border" />
-        <span className="text-xs text-muted-foreground font-medium pr-2">
+        <span className="text-xs text-muted-foreground font-medium">
           <Kbd>⌘ K</Kbd> to add widgets
         </span>
+        <div className="w-px h-4 bg-border" />
+        <ThemeToggle />
       </CardContent>
     </Card>
   );
