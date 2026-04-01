@@ -5,16 +5,17 @@ import {
   SquareUnlock02Icon,
 } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
-import { useAtom } from "jotai";
+import { useAtom, useSetAtom } from "jotai";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Kbd } from "@/components/ui/kbd";
-import { snapEnabledAtom } from "@/stores/canvas";
+import { canvasScaleAtom, snapEnabledAtom } from "@/stores/canvas";
 import { ThemeToggle } from "./theme-toggle";
 import { UserMenu } from "./user-menu";
 
 export function CanvasToolbar() {
   const [snapEnabled, setSnapEnabled] = useAtom(snapEnabledAtom);
+  const [scale, setScale] = useAtom(canvasScaleAtom);
 
   return (
     <Card className="absolute bottom-4 left-1/2 -translate-x-1/2 z-20 py-2 px-2">
@@ -32,6 +33,16 @@ export function CanvasToolbar() {
             color="currentColor"
             strokeWidth={1.5}
           />
+        </Button>
+        <div className="w-px h-4 bg-border" />
+        <Button
+          variant="ghost"
+          size="sm"
+          className="text-xs tabular-nums font-mono"
+          onClick={() => setScale(1)}
+          aria-label="Reset zoom"
+        >
+          {Math.round(scale * 100)}%
         </Button>
         <div className="w-px h-4 bg-border" />
         <span className="text-xs text-muted-foreground font-medium">

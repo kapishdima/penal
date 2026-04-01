@@ -4,6 +4,7 @@ import { useAtom, useAtomValue, useSetAtom } from "jotai";
 import { useCallback, useRef } from "react";
 import { snapValue } from "@/lib/snap";
 import {
+  canvasScaleAtom,
   gridSizeAtom,
   isPanningAtom,
   selectedWidgetIdAtom,
@@ -25,6 +26,7 @@ export const useWidgetDrag = (widget: WidgetState | undefined) => {
   const setWidgets = useSetAtom(widgetsAtom);
   const snapEnabled = useAtomValue(snapEnabledAtom);
   const gridSize = useAtomValue(gridSizeAtom);
+  const scale = useAtomValue(canvasScaleAtom);
 
   const isPanning = useAtomValue(isPanningAtom);
   const isSelected = selectedId === widget?.id;
@@ -56,8 +58,8 @@ export const useWidgetDrag = (widget: WidgetState | undefined) => {
   const onDragMove = useCallback(
     (e: React.PointerEvent) => {
       if (!dragState.current) return;
-      const dx = e.clientX - dragState.current.startX;
-      const dy = e.clientY - dragState.current.startY;
+      const dx = (e.clientX - dragState.current.startX) / scale;
+      const dy = (e.clientY - dragState.current.startY) / scale;
 
       let newX = dragState.current.startWidgetX + dx;
       let newY = dragState.current.startWidgetY + dy;

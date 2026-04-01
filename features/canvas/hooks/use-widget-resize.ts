@@ -3,7 +3,12 @@
 import { useAtom, useAtomValue } from "jotai";
 import { useCallback, useRef } from "react";
 import { snapValue } from "@/lib/snap";
-import { gridSizeAtom, snapEnabledAtom, widgetsAtom } from "@/stores/canvas";
+import {
+  canvasScaleAtom,
+  gridSizeAtom,
+  snapEnabledAtom,
+  widgetsAtom,
+} from "@/stores/canvas";
 
 interface ResizeState {
   startX: number;
@@ -23,6 +28,7 @@ export function useWidgetResize(
   const [widgets, setWidgets] = useAtom(widgetsAtom);
   const snapEnabled = useAtomValue(snapEnabledAtom);
   const gridSize = useAtomValue(gridSizeAtom);
+  const scale = useAtomValue(canvasScaleAtom);
   const resizeState = useRef<ResizeState | null>(null);
 
   const onResizeStart = useCallback(
@@ -59,8 +65,8 @@ export function useWidgetResize(
         startWidgetY,
         handle,
       } = resizeState.current;
-      const dx = e.clientX - startX;
-      const dy = e.clientY - startY;
+      const dx = (e.clientX - startX) / scale;
+      const dy = (e.clientY - startY) / scale;
 
       setWidgets((prev) =>
         prev.map((w) => {

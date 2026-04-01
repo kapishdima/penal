@@ -2,20 +2,25 @@
 
 import { useAtom, useAtomValue } from "jotai";
 import { useCallback } from "react";
-import { canvasOffsetAtom, widgetsAtom } from "@/stores/canvas";
+import {
+  canvasOffsetAtom,
+  canvasScaleAtom,
+  widgetsAtom,
+} from "@/stores/canvas";
 import { getWidgetList } from "../widget-registry";
 
 export function useAddWidget() {
   const [, setWidgets] = useAtom(widgetsAtom);
   const offset = useAtomValue(canvasOffsetAtom);
+  const scale = useAtomValue(canvasScaleAtom);
 
   const addWidget = useCallback(
     (type: string) => {
       const definition = getWidgetList().find((w) => w.type === type);
       if (!definition) return;
 
-      const viewportCenterX = window.innerWidth / 2 - offset.x;
-      const viewportCenterY = window.innerHeight / 2 - offset.y;
+      const viewportCenterX = (window.innerWidth / 2 - offset.x) / scale;
+      const viewportCenterY = (window.innerHeight / 2 - offset.y) / scale;
 
       const newWidget = {
         id: `${type}-${Date.now()}`,

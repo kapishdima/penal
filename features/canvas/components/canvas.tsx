@@ -6,6 +6,7 @@ import { isInputFocused } from "@/lib/event";
 import { cn } from "@/lib/utils";
 import {
   canvasOffsetAtom,
+  canvasScaleAtom,
   isPanningAtom,
   selectedWidgetIdAtom,
   widgetsAtom,
@@ -14,12 +15,14 @@ import { useCanvasDeselect } from "../hooks/use-canvas-deselect";
 import { useCanvasPanning } from "../hooks/use-canvas-panning";
 import { useRemoveWidget } from "../hooks/use-remove-widget";
 import { useSpacePanning } from "../hooks/use-space-panning";
+import { useWheelNavigation } from "../hooks/use-wheel-navigation";
 import { widgetRegistry } from "../widget-registry";
 import { CanvasGrid } from "./canvas-grid";
 import { WidgetWrapper } from "./widget-wrapper";
 
 export function Canvas() {
   const offset = useAtomValue(canvasOffsetAtom);
+  const scale = useAtomValue(canvasScaleAtom);
   const widgets = useAtomValue(widgetsAtom);
   const isPanning = useAtomValue(isPanningAtom);
 
@@ -29,6 +32,7 @@ export function Canvas() {
   const { handlers } = useCanvasPanning();
   const onCanvasPointerDown = useCanvasDeselect();
   useSpacePanning();
+  useWheelNavigation();
 
   useEventListener("keydown", (e) => {
     if ((e.key === "Delete" || e.key === "Backspace") && selectedId && !isInputFocused()) {
@@ -58,7 +62,8 @@ export function Canvas() {
         data-canvas-surface
         className="absolute inset-0"
         style={{
-          transform: `translate(${offset.x}px, ${offset.y}px)`,
+          transform: `translate(${offset.x}px, ${offset.y}px) scale(${scale})`,
+          transformOrigin: "0 0",
         }}
       >
         {widgets.map((widget) => {

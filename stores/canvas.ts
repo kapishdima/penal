@@ -26,6 +26,8 @@ export const snapEnabledAtom = atomWithStorage("penal:snap-enabled", true);
 
 export const gridSizeAtom = atomWithStorage("penal:grid-size", 20);
 
+export const canvasScaleAtom = atomWithStorage("penal:canvas-scale", 1);
+
 export const isPanningAtom = atom(false);
 
 export const selectedWidgetIdAtom = atom<string | null>(null);
