@@ -61,7 +61,7 @@ export function WidgetWrapper({
         onResizeEnd();
       }}
     >
-      <div className="w-full h-full overflow-hidden rounded-xl">
+      <div className="w-full h-full overflow-hidden rounded-xl no-scrollbar">
         {children({ widgetId, isSelected, isPanning })}
       </div>
 
