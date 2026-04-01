@@ -3,7 +3,7 @@
 import { GithubIcon } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { WidgetCard } from "@/features/canvas/components/widget-card";
 import type { ChildrenProps } from "@/features/canvas/components/widget-wrapper";
 import { registerWidget } from "@/features/canvas/widget-registry";
 import { cn } from "@/lib/utils";
@@ -26,7 +26,7 @@ function ContributionGraph({
   const visibleWeeks = weeks.slice(-20);
 
   return (
-    <div className="flex gap-[3px]">
+    <div className="flex gap-[3px]" role="img" aria-label="GitHub contribution graph">
       {visibleWeeks.map((week, wi) => (
         <div key={week.contributionDays[0]?.date ?? wi} className="flex flex-col gap-[3px]">
           {week.contributionDays.map((day) => (
@@ -69,33 +69,20 @@ function GitHubGraphWidget({ widgetId, isSelected, isPanning }: ChildrenProps) {
   const { data, loading, error } = useGitHubContributions();
 
   return (
-    <Card
-      size="sm"
-      className={cn(
-        "h-full border ring-0 shadow-none transition",
-        isSelected && "border-2 border-primary shadow-md",
-        isPanning && "pointer-events-none opacity-50",
-      )}
-    >
-      <CardHeader className="flex flex-row items-center justify-between">
-        <div className="flex items-center gap-2">
-          <HugeiconsIcon
-            icon={GithubIcon}
-            size={16}
-            className="text-muted-foreground"
-          />
-          <CardTitle className="text-xs font-medium text-muted-foreground">
-            GitHub
-          </CardTitle>
-        </div>
-        {data?.connected && data.totalContributions > 0 && (
+    <WidgetCard
+      icon={GithubIcon}
+      title="GitHub"
+      isSelected={isSelected}
+      isPanning={isPanning}
+      headerRight={
+        data?.connected && data.totalContributions > 0 ? (
           <span className="text-xs font-medium tabular-nums">
             {data.totalContributions.toLocaleString()} contributions
           </span>
-        )}
-      </CardHeader>
-
-      <CardContent className="px-0 flex-1 flex flex-col items-center justify-center" data-no-drag>
+        ) : undefined
+      }
+    >
+      <div className="flex-1 flex items-center justify-center" data-no-drag>
         {loading && (
           <p className="text-xs text-muted-foreground animate-pulse">
             Loading...
@@ -113,8 +100,8 @@ function GitHubGraphWidget({ widgetId, isSelected, isPanning }: ChildrenProps) {
             <ContributionGraph weeks={data.weeks} />
           </div>
         )}
-      </CardContent>
-    </Card>
+      </div>
+    </WidgetCard>
   );
 }
 

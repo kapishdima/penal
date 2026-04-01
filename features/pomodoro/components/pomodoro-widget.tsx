@@ -8,7 +8,7 @@ import {
 } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { WidgetCard } from "@/features/canvas/components/widget-card";
 import type { ChildrenProps } from "@/features/canvas/components/widget-wrapper";
 import { registerWidget } from "@/features/canvas/widget-registry";
 import { cn } from "@/lib/utils";
@@ -64,7 +64,7 @@ function PomodoroControls({
         Start
       </Button>
       {hasProgress && (
-        <Button variant="ghost" size="sm" onClick={onReset}>
+        <Button variant="ghost" size="sm" aria-label="Reset timer" onClick={onReset}>
           <HugeiconsIcon icon={RepeatIcon} size={16} />
         </Button>
       )}
@@ -90,33 +90,28 @@ function PomodoroWidget({ widgetId, isSelected, isPanning }: ChildrenProps) {
   const strokeDashoffset = circumference * (1 - progress);
 
   return (
-    <Card
-      size="sm"
-      className={cn(
-        "h-full border ring-0 shadow-none transition",
-        isSelected && "border-2 border-primary shadow-md",
-        isPanning && "pointer-events-none opacity-50",
-      )}
-    >
-      <CardHeader className="border-b flex flex-row items-center justify-between">
-        <div className="flex items-center gap-2">
-          <HugeiconsIcon
-            icon={Timer02Icon}
-            size={16}
-            className="text-muted-foreground"
-          />
-          <CardTitle className="text-xs font-medium text-muted-foreground">
-            Pomodoro
-          </CardTitle>
-        </div>
+    <WidgetCard
+      icon={Timer02Icon}
+      title="Pomodoro"
+      isSelected={isSelected}
+      isPanning={isPanning}
+      headerRight={
         <span className="text-xs font-medium text-muted-foreground">
           {label}
         </span>
-      </CardHeader>
-
-      <CardContent className="px-0 flex-1 flex flex-col items-center justify-center gap-4 p-4">
+      }
+    >
+      <div className="flex-1 flex flex-col items-center justify-center gap-4 p-4">
         <div className="relative size-28" data-no-drag>
-          <svg className="size-full -rotate-90" viewBox="0 0 100 100">
+          <svg
+            className="-rotate-90 size-full"
+            viewBox="0 0 100 100"
+            role="progressbar"
+            aria-valuenow={Math.round(progress * 100)}
+            aria-valuemin={0}
+            aria-valuemax={100}
+            aria-label={`${label}: ${display}`}
+          >
             <circle
               cx="50"
               cy="50"
@@ -168,13 +163,14 @@ function PomodoroWidget({ widgetId, isSelected, isPanning }: ChildrenProps) {
               size="xs"
               onClick={() => switchPhase(p.value)}
               variant={p.value === phase ? "default" : "secondary"}
+              aria-current={p.value === phase ? "true" : undefined}
             >
               {p.label}
             </Button>
           ))}
         </div>
-      </CardContent>
-    </Card>
+      </div>
+    </WidgetCard>
   );
 }
 
