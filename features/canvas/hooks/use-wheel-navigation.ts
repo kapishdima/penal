@@ -19,6 +19,12 @@ export function useWheelNavigation() {
   useEventListener(
     "wheel",
     (e) => {
+      // Don't intercept scroll inside overlays (command palette, dropdowns, etc.)
+      const target = e.target as HTMLElement;
+      if (target.closest("[data-slot=dialog-content], [data-slot=dropdown-menu-content], [data-slot=command-list]")) {
+        return;
+      }
+
       e.preventDefault();
 
       if (e.ctrlKey || e.metaKey) {
