@@ -2,6 +2,8 @@
 // Each file calls registerWidget() on import
 import "./components/placeholder-widget";
 import "@/features/bookmarks/components/bookmarks-widget";
+import "@/features/calendar/components/calendar-widget";
+import "@/features/clock/components/clock-widget";
 import "@/features/github/components/github-graph-widget";
 import "@/features/github/components/github-notifications-widget";
 import "@/features/habits/components/habits-widget";
