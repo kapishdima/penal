@@ -35,7 +35,7 @@ function NotesWidget({ widgetId, isSelected, isPanning }: ChildrenProps) {
         </Button>
       }
     >
-      <div className="flex-1 min-h-0 overflow-auto">
+      <div className="flex-1 min-h-0 overflow-hidden">
         {isPreview ? (
           <div className="p-3 prose prose-sm dark:prose-invert max-w-none text-sm">
             {content ? (
@@ -50,7 +50,7 @@ function NotesWidget({ widgetId, isSelected, isPanning }: ChildrenProps) {
             value={content}
             onChange={(e) => setContent(e.target.value)}
             placeholder="Write in markdown..."
-            className="w-full h-full resize-none bg-transparent p-3 text-sm outline-none placeholder:text-muted-foreground/50 font-mono"
+            className="w-full h-full resize-none bg-transparent p-3 text-sm outline-none placeholder:text-muted-foreground/50 font-mono overflow-hidden"
           />
         )}
       </div>

@@ -131,6 +131,10 @@
   .no-scrollbar *::-webkit-scrollbar {
     display: none;
   }
+
+  .container {
+    @apply mx-auto w-full px-4;
+  }
 }
 
 @layer base {

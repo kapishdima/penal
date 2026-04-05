@@ -9,7 +9,7 @@ export interface Subscription {
   amount: number;
 }
 
-const subscriptionsAtom = atomWithStorage<Record<string, Subscription[]>>(
+export const subscriptionsAtom = atomWithStorage<Record<string, Subscription[]>>(
   "penal:subscriptions",
   {},
 );

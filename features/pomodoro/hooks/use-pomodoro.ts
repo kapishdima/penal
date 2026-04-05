@@ -25,7 +25,7 @@ interface PomodoroState {
   lastTickAt: number | null;
 }
 
-const pomodoroAtom = atomWithStorage<PomodoroState>("penal:pomodoro", {
+export const pomodoroAtom = atomWithStorage<PomodoroState>("penal:pomodoro", {
   phase: "focus",
   timeLeft: PHASE_DURATIONS.focus,
   isRunning: false,

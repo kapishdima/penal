@@ -15,7 +15,7 @@ interface MoneyState {
   transactions: Transaction[];
 }
 
-const moneyAtom = atomWithStorage<Record<string, MoneyState>>(
+export const moneyAtom = atomWithStorage<Record<string, MoneyState>>(
   "penal:money",
   {},
 );

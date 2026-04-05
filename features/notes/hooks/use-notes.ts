@@ -3,7 +3,7 @@
 import { atomWithStorage } from "jotai/utils";
 import { useAtom } from "jotai";
 
-const notesStorageAtom = atomWithStorage<Record<string, string>>(
+export const notesStorageAtom = atomWithStorage<Record<string, string>>(
   "penal:notes",
   {},
 );

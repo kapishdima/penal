@@ -12,7 +12,7 @@ export interface Task {
   priority: Priority;
 }
 
-const tasksStorageAtom = atomWithStorage<Record<string, Task[]>>(
+export const tasksStorageAtom = atomWithStorage<Record<string, Task[]>>(
   "penal:tasks",
   {},
 );
