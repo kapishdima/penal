@@ -1,9 +1,11 @@
 "use client";
 
-import { Logout03Icon } from "@hugeicons/core-free-icons";
+import { Login03Icon, Logout03Icon } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -28,7 +30,15 @@ export function UserMenu() {
   const { data: session } = authClient.useSession();
   const router = useRouter();
 
-  if (!session?.user) return null;
+  if (!session?.user)
+    return (
+      <Button variant="secondary">
+        <Link href="/login" className="flex items-center gap-x-1">
+          <HugeiconsIcon icon={Login03Icon} size={16} />
+          Sign In
+        </Link>
+      </Button>
+    );
 
   const { name, email, image } = session.user;
 
