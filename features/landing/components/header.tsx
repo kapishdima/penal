@@ -91,7 +91,7 @@ export const HeroHeader = () => {
                 <Button
                   size="sm"
                   className={cn("lg:inline-flex")}
-                  render={<Link href="#" />}
+                  render={<Link href="/canvas" />}
                   nativeButton={false}
                 >
                   <span>Get Started</span>

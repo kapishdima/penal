@@ -35,7 +35,7 @@ export default function RegisterPage() {
       return;
     }
 
-    router.push("/");
+    router.push("/canvas");
   };
 
   return (
