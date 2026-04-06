@@ -53,7 +53,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Penal — Productivity Whiteboard",
+  title: "Penal - Productivity Whiteboard",
   description: "Your personal productivity dashboard on an infinite canvas",
 };
 
