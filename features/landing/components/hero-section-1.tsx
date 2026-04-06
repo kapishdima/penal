@@ -1,5 +1,7 @@
 "use client";
 
+import { ArrowRight02Icon } from "@hugeicons/core-free-icons";
+import { HugeiconsIcon } from "@hugeicons/react";
 import Link from "next/link";
 import { GridPattern } from "@/components/grid-pattern";
 import { Button } from "@/components/ui/button";
@@ -50,11 +52,17 @@ export default function Hero() {
               </p>
 
               <Button
-                className="mt-5 pr-1.5"
+                className="mt-5 pr-2"
                 render={<Link href="/canvas" />}
                 nativeButton={false}
               >
                 <span className="text-nowrap">Start building - It's free</span>
+                <HugeiconsIcon
+                  icon={ArrowRight02Icon}
+                  size={24}
+                  color="currentColor"
+                  strokeWidth={1.5}
+                />
               </Button>
             </div>
             <div className="mx-auto mt-24 max-w-[971px] pl-[12px]">
