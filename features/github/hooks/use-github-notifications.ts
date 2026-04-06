@@ -35,7 +35,7 @@ export function useGitHubNotifications(participating = false) {
 
       if (!res.ok) {
         setError(json.error ?? "Failed to fetch");
-        if (json.connected === false) {
+        if (json.connected === false || res.status === 401) {
           setData({ notifications: [], connected: false });
         }
         return;

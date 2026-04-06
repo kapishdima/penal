@@ -2,7 +2,6 @@
 // Each file calls registerWidget() on import
 import "./components/placeholder-widget";
 import "@/features/bookmarks/components/bookmarks-widget";
-import "@/features/calendar/components/calendar-widget";
 import "@/features/clock/components/clock-widget";
 import "@/features/github/components/github-graph-widget";
 import "@/features/github/components/github-notifications-widget";
@@ -14,4 +13,3 @@ import "@/features/routines/components/routine-widget";
 import "@/features/spotify/components/spotify-widget";
 import "@/features/subscriptions/components/subscriptions-widget";
 import "@/features/tasks/components/tasks-widget";
-import "@/features/twitter/components/twitter-widget";

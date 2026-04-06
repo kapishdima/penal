@@ -62,9 +62,7 @@ export function WidgetWrapper({
 
   const toggleLock = useCallback(() => {
     setWidgets((prev) =>
-      prev.map((w) =>
-        w.id === widgetId ? { ...w, locked: !w.locked } : w,
-      ),
+      prev.map((w) => (w.id === widgetId ? { ...w, locked: !w.locked } : w)),
     );
   }, [widgetId, setWidgets]);
 
@@ -110,7 +108,7 @@ export function WidgetWrapper({
               data-no-drag
               variant="destructive"
               size="icon"
-              className="absolute -top-3 -right-3 z-20"
+              className="absolute -top-3 -right-3 z-20 bg-red-100"
               aria-label="Remove widget"
               onPointerDown={(e) => e.stopPropagation()}
               onClick={() => removeWidget(widgetId)}
@@ -121,8 +119,8 @@ export function WidgetWrapper({
             <Button
               data-no-drag
               variant="secondary"
-              size="icon-xs"
-              className="absolute -top-2.5 -left-2.5 z-20 rounded-full size-6"
+              size="icon"
+              className="absolute -top-2.5 -left-2.5 z-20 "
               aria-label={isLocked ? "Unlock widget" : "Lock widget"}
               onPointerDown={(e) => e.stopPropagation()}
               onClick={toggleLock}

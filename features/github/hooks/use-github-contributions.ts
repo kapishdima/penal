@@ -32,7 +32,7 @@ export function useGitHubContributions() {
 
       if (!res.ok) {
         setError(json.error ?? "Failed to fetch");
-        if (json.connected === false) {
+        if (json.connected === false || res.status === 401) {
           setData({ totalContributions: 0, weeks: [], connected: false });
         }
         return;
