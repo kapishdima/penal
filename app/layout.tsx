@@ -7,6 +7,8 @@ import {
   Manrope,
 } from "next/font/google";
 import "./globals.css";
+
+import { Analytics } from "@vercel/analytics/next";
 import { ThemeProvider } from "next-themes";
 import { cn } from "@/lib/utils";
 
@@ -53,7 +55,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Penal - Productivity Whiteboard",
+  title: "Pennal - Productivity Whiteboard",
   description: "Your personal productivity dashboard on an infinite canvas",
 };
 
@@ -80,6 +82,7 @@ export default function RootLayout({
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           {children}
         </ThemeProvider>
+        <Analytics />
       </body>
     </html>
   );

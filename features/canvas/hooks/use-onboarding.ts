@@ -5,7 +5,7 @@ import { atomWithStorage } from "jotai/utils";
 import { widgetsAtom } from "@/stores/canvas";
 
 const onboardingDismissedAtom = atomWithStorage(
-  "penal:onboarding-dismissed",
+  "pennal:onboarding-dismissed",
   false,
 );
 

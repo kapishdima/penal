@@ -13,21 +13,21 @@ export interface WidgetInstance {
   locked?: boolean;
 }
 
-export const canvasOffsetAtom = atomWithStorage("penal:canvas-offset", {
+export const canvasOffsetAtom = atomWithStorage("pennal:canvas-offset", {
   x: 0,
   y: 0,
 });
 
 export const widgetsAtom = atomWithStorage<WidgetInstance[]>(
-  "penal:widgets",
+  "pennal:widgets",
   [],
 );
 
-export const snapEnabledAtom = atomWithStorage("penal:snap-enabled", true);
+export const snapEnabledAtom = atomWithStorage("pennal:snap-enabled", true);
 
-export const gridSizeAtom = atomWithStorage("penal:grid-size", 20);
+export const gridSizeAtom = atomWithStorage("pennal:grid-size", 20);
 
-export const canvasScaleAtom = atomWithStorage("penal:canvas-scale", 1);
+export const canvasScaleAtom = atomWithStorage("pennal:canvas-scale", 1);
 
 export const isPanningAtom = atom(false);
 

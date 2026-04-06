@@ -10,7 +10,7 @@ export interface Bookmark {
 }
 
 const bookmarksAtom = atomWithStorage<Record<string, Bookmark[]>>(
-  "penal:bookmarks",
+  "pennal:bookmarks",
   {},
 );
 

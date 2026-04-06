@@ -49,7 +49,7 @@ export default function LoginPage() {
             <span className="text-muted-foreground">one&nbsp;canvas.</span>
           </h1>
           <p className="mt-4 text-muted-foreground text-base leading-relaxed">
-            Penal collects your widgets — <b>tasks, notes, habits, timers</b> — on
+            Pennal collects your widgets — <b>tasks, notes, habits, timers</b> — on
             an infinite board you arrange however you&nbsp;think.
           </p>
         </div>
@@ -62,7 +62,7 @@ export default function LoginPage() {
             Welcome back
           </p>
           <h2 className="mt-1 text-2xl font-heading font-bold tracking-tight">
-            Sign in to Penal
+            Sign in to Pennal
           </h2>
 
           <form onSubmit={onSubmit} className="mt-8 flex flex-col gap-5">

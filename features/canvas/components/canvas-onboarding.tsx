@@ -43,7 +43,7 @@ export function CanvasOnboarding() {
       <div className="flex flex-col items-center gap-8 animate-in fade-in duration-500">
         <div className="flex flex-col items-center gap-2">
           <h2 className="text-2xl font-semibold tracking-tight text-foreground">
-            Welcome to Penal
+            Welcome to Pennal
           </h2>
           <p className="text-sm text-muted-foreground">
             Your personal workspace. Start by adding widgets.

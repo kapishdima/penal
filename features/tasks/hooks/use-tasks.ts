@@ -13,7 +13,7 @@ export interface Task {
 }
 
 export const tasksStorageAtom = atomWithStorage<Record<string, Task[]>>(
-  "penal:tasks",
+  "pennal:tasks",
   {},
 );
 

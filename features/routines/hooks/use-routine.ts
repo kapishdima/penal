@@ -15,7 +15,7 @@ interface RoutineState {
 }
 
 const routinesAtom = atomWithStorage<Record<string, RoutineState>>(
-  "penal:routines",
+  "pennal:routines",
   {},
 );
 

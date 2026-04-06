@@ -7,7 +7,7 @@ export function MobileGuard() {
         <span className="text-4xl mb-4 block">🖥️</span>
         <h2 className="text-xl font-semibold mb-2">Desktop Only</h2>
         <p className="text-muted-foreground">
-          Penal is designed for desktop screens. Please open it on a larger
+          Pennal is designed for desktop screens. Please open it on a larger
           device for the best experience.
         </p>
       </div>

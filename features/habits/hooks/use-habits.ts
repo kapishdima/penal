@@ -10,7 +10,7 @@ export interface Habit {
 }
 
 const habitsAtom = atomWithStorage<Record<string, Habit[]>>(
-  "penal:habits",
+  "pennal:habits",
   {},
 );
 

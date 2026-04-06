@@ -4,7 +4,7 @@ import { atomWithStorage } from "jotai/utils";
 import { useAtom } from "jotai";
 
 export const notesStorageAtom = atomWithStorage<Record<string, string>>(
-  "penal:notes",
+  "pennal:notes",
   {},
 );
 

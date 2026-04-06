@@ -16,7 +16,7 @@ interface MoneyState {
 }
 
 export const moneyAtom = atomWithStorage<Record<string, MoneyState>>(
-  "penal:money",
+  "pennal:money",
   {},
 );
 

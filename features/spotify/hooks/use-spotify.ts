@@ -4,7 +4,7 @@ import { useAtom } from "jotai";
 import { atomWithStorage } from "jotai/utils";
 
 const spotifyAtom = atomWithStorage<Record<string, string>>(
-  "penal:spotify",
+  "pennal:spotify",
   {},
 );
 
