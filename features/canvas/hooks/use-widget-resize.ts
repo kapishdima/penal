@@ -2,7 +2,6 @@
 
 import { useAtom, useAtomValue } from "jotai";
 import { useCallback, useRef } from "react";
-import { pushOverlappingWidgets } from "@/lib/collision";
 import { snapValue } from "@/lib/snap";
 import {
   canvasScaleAtom,
@@ -108,7 +107,7 @@ export function useWidgetResize(
           return { ...w, width: newWidth, height: newHeight, x: newX, y: newY };
         });
 
-        return pushOverlappingWidgets(updated, widgetId, handle);
+        return updated;
       });
     },
     [widgetId, setWidgets, gridSize, snapEnabled, minWidth, minHeight, scale],

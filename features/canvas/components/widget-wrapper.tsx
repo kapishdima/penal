@@ -2,6 +2,8 @@
 
 import {
   Delete02Icon,
+  PinIcon,
+  PinOffIcon,
   SquareLock02Icon,
   SquareUnlock02Icon,
 } from "@hugeicons/core-free-icons";
@@ -9,6 +11,13 @@ import { HugeiconsIcon } from "@hugeicons/react";
 import { useAtomValue, useSetAtom } from "jotai";
 import { useCallback } from "react";
 import { Button } from "@/components/ui/button";
+import {
+  ContextMenu,
+  ContextMenuContent,
+  ContextMenuItem,
+  ContextMenuSeparator,
+  ContextMenuTrigger,
+} from "@/components/ui/context-menu";
 import { useWidgetDrag } from "@/features/canvas/hooks/use-widget-drag";
 import { cn } from "@/lib/utils";
 import { widgetsAtom } from "@/stores/canvas";
@@ -64,81 +73,98 @@ export function WidgetWrapper({
   const isLocked = widget.locked ?? false;
 
   return (
-    <div
-      className={cn("absolute select-none", isLocked && "opacity-90")}
-      style={{
-        left: widget.x,
-        top: widget.y,
-        width: widget.width,
-        height: widget.height,
-      }}
-      onPointerDown={onDragStart}
-      onPointerMove={
-        isLocked
-          ? undefined
-          : (e) => {
-              onDragMove(e);
-              onResizeMove(e);
-            }
-      }
-      onPointerUp={
-        isLocked
-          ? undefined
-          : () => {
-              onDragEnd();
-              onResizeEnd();
-            }
-      }
-    >
-      <div className="w-full h-full overflow-hidden rounded-xl no-scrollbar">
-        {children({ widgetId, isSelected, isPanning })}
-      </div>
+    <ContextMenu>
+      <ContextMenuTrigger
+        className={cn("absolute select-none", isLocked && "opacity-90")}
+        style={{
+          left: widget.x,
+          top: widget.y,
+          width: widget.width,
+          height: widget.height,
+        }}
+        onPointerDown={onDragStart}
+        onPointerMove={
+          isLocked
+            ? undefined
+            : (e) => {
+                onDragMove(e);
+                onResizeMove(e);
+              }
+        }
+        onPointerUp={
+          isLocked
+            ? undefined
+            : () => {
+                onDragEnd();
+                onResizeEnd();
+              }
+        }
+      >
+        <div className="w-full h-full overflow-hidden rounded-xl no-scrollbar">
+          {children({ widgetId, isSelected, isPanning })}
+        </div>
 
-      {isSelected && (
-        <>
-          <Button
-            data-no-drag
-            variant="destructive"
-            size="icon"
-            className="absolute -top-3 -right-3 z-20"
-            aria-label="Remove widget"
-            onPointerDown={(e) => e.stopPropagation()}
-            onClick={() => removeWidget(widgetId)}
-          >
-            <HugeiconsIcon icon={Delete02Icon} size={24} />
-          </Button>
+        {isSelected && (
+          <>
+            <Button
+              data-no-drag
+              variant="destructive"
+              size="icon"
+              className="absolute -top-3 -right-3 z-20"
+              aria-label="Remove widget"
+              onPointerDown={(e) => e.stopPropagation()}
+              onClick={() => removeWidget(widgetId)}
+            >
+              <HugeiconsIcon icon={Delete02Icon} size={24} />
+            </Button>
 
-          <Button
-            data-no-drag
-            variant="secondary"
-            size="icon-xs"
-            className="absolute -top-2.5 -left-2.5 z-20 rounded-full size-6"
-            aria-label={isLocked ? "Unlock widget" : "Lock widget"}
-            onPointerDown={(e) => e.stopPropagation()}
-            onClick={toggleLock}
-          >
-            <HugeiconsIcon
-              icon={isLocked ? SquareLock02Icon : SquareUnlock02Icon}
-              size={14}
+            <Button
+              data-no-drag
+              variant="secondary"
+              size="icon-xs"
+              className="absolute -top-2.5 -left-2.5 z-20 rounded-full size-6"
+              aria-label={isLocked ? "Unlock widget" : "Lock widget"}
+              onPointerDown={(e) => e.stopPropagation()}
+              onClick={toggleLock}
+            >
+              <HugeiconsIcon
+                icon={isLocked ? SquareLock02Icon : SquareUnlock02Icon}
+                size={14}
+              />
+            </Button>
+          </>
+        )}
+
+        {isSelected &&
+          !isLocked &&
+          RESIZE_HANDLES.map((handle) => (
+            <div
+              key={handle}
+              data-resize-handle
+              className={cn(
+                "absolute z-10 opacity-0 group-hover:opacity-100 transition-opacity",
+                HANDLE_POSITIONS[handle],
+                HANDLE_CURSORS[handle],
+              )}
+              onPointerDown={(e) => onResizeStart(handle, e)}
             />
-          </Button>
-        </>
-      )}
+          ))}
+      </ContextMenuTrigger>
 
-      {isSelected &&
-        !isLocked &&
-        RESIZE_HANDLES.map((handle) => (
-          <div
-            key={handle}
-            data-resize-handle
-            className={cn(
-              "absolute z-10 opacity-0 group-hover:opacity-100 transition-opacity",
-              HANDLE_POSITIONS[handle],
-              HANDLE_CURSORS[handle],
-            )}
-            onPointerDown={(e) => onResizeStart(handle, e)}
-          />
-        ))}
-    </div>
+      <ContextMenuContent>
+        <ContextMenuItem onClick={toggleLock}>
+          <HugeiconsIcon icon={isLocked ? PinOffIcon : PinIcon} size={16} />
+          {isLocked ? "Unpin" : "Pin"}
+        </ContextMenuItem>
+        <ContextMenuSeparator />
+        <ContextMenuItem
+          variant="destructive"
+          onClick={() => removeWidget(widgetId)}
+        >
+          <HugeiconsIcon icon={Delete02Icon} size={16} />
+          Delete
+        </ContextMenuItem>
+      </ContextMenuContent>
+    </ContextMenu>
   );
 }
