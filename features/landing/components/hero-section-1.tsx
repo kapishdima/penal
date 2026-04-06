@@ -1,6 +1,5 @@
 "use client";
 
-import { ChevronRight } from "lucide-react";
 import Link from "next/link";
 import { GridPattern } from "@/components/grid-pattern";
 import { Button } from "@/components/ui/button";
@@ -56,7 +55,6 @@ export default function Hero() {
                 nativeButton={false}
               >
                 <span className="text-nowrap">Start building - It's free</span>
-                <ChevronRight className="opacity-50" />
               </Button>
             </div>
             <div className="mx-auto mt-24 max-w-[971px] pl-[12px]">
