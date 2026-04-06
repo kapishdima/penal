@@ -1,6 +1,6 @@
 "use client";
 
-import { Comment01Icon } from "@hugeicons/core-free-icons";
+import { Comment01Icon, NewTwitterIcon } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
 import { useEffect, useRef, useState } from "react";
 import {
@@ -138,7 +138,7 @@ function TwitterWidget({ widgetId, isSelected, isPanning }: ChildrenProps) {
 registerWidget({
   type: "twitter",
   name: "Twitter Feed",
-  icon: "🐦",
+  icon: NewTwitterIcon,
   defaultSize: { width: 320, height: 400 },
   minSize: { width: 260, height: 280 },
   component: TwitterWidget,

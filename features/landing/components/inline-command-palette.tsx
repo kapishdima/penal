@@ -1,5 +1,6 @@
 "use client";
 
+import { HugeiconsIcon } from "@hugeicons/react";
 import {
   Command,
   CommandEmpty,
@@ -34,7 +35,7 @@ export function InlineCommandPalette({
             <CommandGroup heading="Widgets">
               {widgetList.map((w) => (
                 <CommandItem key={w.type} onSelect={() => addWidget(w.type)}>
-                  <span className="text-lg mr-2">{w.icon}</span>
+                  <HugeiconsIcon icon={w.icon} size={18} strokeWidth={1.5} />
                   <span>{w.name}</span>
                 </CommandItem>
               ))}

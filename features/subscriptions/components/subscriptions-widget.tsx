@@ -148,7 +148,7 @@ function SubscriptionsWidget({
 registerWidget({
   type: "subscriptions",
   name: "Subscriptions",
-  icon: "💳",
+  icon: RepeatIcon,
   defaultSize: { width: 300, height: 360 },
   minSize: { width: 240, height: 240 },
   component: SubscriptionsWidget,

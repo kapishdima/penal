@@ -1,9 +1,10 @@
 import type { ComponentType } from "react";
+import type { IconSvgElement } from "@hugeicons/react";
 
 export interface WidgetDefinition {
   type: string;
   name: string;
-  icon: string;
+  icon: IconSvgElement;
   defaultSize: { width: number; height: number };
   minSize: { width: number; height: number };
   component: ComponentType<{

@@ -76,7 +76,7 @@ function GitHubGraphWidget({ widgetId, isSelected, isPanning }: ChildrenProps) {
 registerWidget({
   type: "github-graph",
   name: "GitHub Contributions",
-  icon: "🐙",
+  icon: GithubIcon,
   defaultSize: { width: 340, height: 180 },
   minSize: { width: 280, height: 140 },
   component: GitHubGraphWidget,

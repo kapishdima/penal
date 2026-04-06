@@ -272,7 +272,7 @@ function GitHubNotificationsWidget({
 registerWidget({
   type: "github-notifications",
   name: "GitHub Notifications",
-  icon: "🔔",
+  icon: Notification03Icon,
   defaultSize: { width: 340, height: 400 },
   minSize: { width: 280, height: 240 },
   component: GitHubNotificationsWidget,

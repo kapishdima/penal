@@ -29,11 +29,11 @@ function CalendarWidget({ widgetId, isSelected, isPanning }: ChildrenProps) {
   );
 }
 
-registerWidget({
-  type: "calendar",
-  name: "Calendar",
-  icon: "📅",
-  defaultSize: { width: 300, height: 340 },
-  minSize: { width: 280, height: 300 },
-  component: CalendarWidget,
-});
+// registerWidget({
+//   type: "calendar",
+//   name: "Calendar",
+//   icon: Calendar01Icon,
+//   defaultSize: { width: 300, height: 340 },
+//   minSize: { width: 280, height: 300 },
+//   component: CalendarWidget,
+// });

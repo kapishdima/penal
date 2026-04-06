@@ -1,5 +1,6 @@
 "use client";
 
+import { Package01Icon } from "@hugeicons/core-free-icons";
 import clsx from "clsx";
 import {
   Card,
@@ -31,7 +32,7 @@ function PlaceholderWidget({ widgetId, isPanning, isSelected }: ChildrenProps) {
 registerWidget({
   type: "placeholder",
   name: "Placeholder",
-  icon: "📦",
+  icon: Package01Icon,
   defaultSize: { width: 280, height: 200 },
   minSize: { width: 200, height: 120 },
   component: PlaceholderWidget,

@@ -34,7 +34,7 @@ function ClockWidget({ widgetId, isSelected, isPanning }: ChildrenProps) {
 registerWidget({
   type: "clock",
   name: "Clock",
-  icon: "🕐",
+  icon: Clock01Icon,
   defaultSize: { width: 280, height: 160 },
   minSize: { width: 220, height: 130 },
   component: ClockWidget,

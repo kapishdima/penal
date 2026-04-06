@@ -99,7 +99,7 @@ function SpotifyWidget({ widgetId, isSelected, isPanning }: ChildrenProps) {
 registerWidget({
   type: "spotify",
   name: "Spotify",
-  icon: "🎵",
+  icon: MusicNote03Icon,
   defaultSize: { width: 300, height: 380 },
   minSize: { width: 260, height: 100 },
   component: SpotifyWidget,

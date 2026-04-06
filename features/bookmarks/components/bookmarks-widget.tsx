@@ -143,7 +143,7 @@ function BookmarksWidget({ widgetId, isSelected, isPanning }: ChildrenProps) {
 registerWidget({
   type: "bookmarks",
   name: "Bookmarks",
-  icon: "🔗",
+  icon: Link04Icon,
   defaultSize: { width: 300, height: 320 },
   minSize: { width: 240, height: 220 },
   component: BookmarksWidget,

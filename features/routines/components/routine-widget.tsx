@@ -143,7 +143,7 @@ function RestRoutineWidget(props: ChildrenProps) {
 registerWidget({
   type: "morning-routine",
   name: "Morning Routine",
-  icon: "🌅",
+  icon: Sun03Icon,
   defaultSize: { width: 280, height: 320 },
   minSize: { width: 220, height: 200 },
   component: MorningRoutineWidget,
@@ -152,7 +152,7 @@ registerWidget({
 registerWidget({
   type: "rest-routine",
   name: "Rest Routine",
-  icon: "🌙",
+  icon: Moon02Icon,
   defaultSize: { width: 280, height: 320 },
   minSize: { width: 220, height: 200 },
   component: RestRoutineWidget,

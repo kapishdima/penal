@@ -61,7 +61,7 @@ function NotesWidget({ widgetId, isSelected, isPanning }: ChildrenProps) {
 registerWidget({
   type: "notes",
   name: "Notes",
-  icon: "📝",
+  icon: NoteIcon,
   defaultSize: { width: 320, height: 280 },
   minSize: { width: 240, height: 180 },
   component: NotesWidget,

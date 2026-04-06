@@ -110,7 +110,7 @@ function HabitsWidget({ widgetId, isSelected, isPanning }: ChildrenProps) {
 registerWidget({
   type: "habits",
   name: "Habits Tracker",
-  icon: "🎯",
+  icon: Target02Icon,
   defaultSize: { width: 280, height: 300 },
   minSize: { width: 220, height: 200 },
   component: HabitsWidget,

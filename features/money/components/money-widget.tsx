@@ -143,7 +143,7 @@ function MoneyWidget({ widgetId, isSelected, isPanning }: ChildrenProps) {
 registerWidget({
   type: "money",
   name: "Money Balance",
-  icon: "💰",
+  icon: CreditCardIcon,
   defaultSize: { width: 300, height: 360 },
   minSize: { width: 240, height: 240 },
   component: MoneyWidget,

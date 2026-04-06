@@ -145,7 +145,7 @@ function TasksWidget({ widgetId, isSelected, isPanning }: ChildrenProps) {
 registerWidget({
   type: "tasks",
   name: "Tasks",
-  icon: "✅",
+  icon: CheckListIcon,
   defaultSize: { width: 300, height: 340 },
   minSize: { width: 240, height: 200 },
   component: TasksWidget,

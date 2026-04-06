@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { HugeiconsIcon } from "@hugeicons/react";
 import {
   CommandDialog,
   CommandEmpty,
@@ -39,7 +40,7 @@ export function CommandPalette() {
         <CommandGroup heading="Widgets">
           {widgetList.map((w) => (
             <CommandItem key={w.type} onSelect={() => onSelect(w.type)}>
-              <span className="text-lg mr-2">{w.icon}</span>
+              <HugeiconsIcon icon={w.icon} size={18} strokeWidth={1.5} />
               <span>{w.name}</span>
             </CommandItem>
           ))}

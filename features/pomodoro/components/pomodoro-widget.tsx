@@ -177,7 +177,7 @@ function PomodoroWidget({ widgetId, isSelected, isPanning }: ChildrenProps) {
 registerWidget({
   type: "pomodoro",
   name: "Pomodoro Timer",
-  icon: "⏱️",
+  icon: Timer02Icon,
   defaultSize: { width: 260, height: 300 },
   minSize: { width: 220, height: 260 },
   component: PomodoroWidget,
