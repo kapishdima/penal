@@ -19,7 +19,7 @@ export function GitHubSignInButton() {
     setLoading(true);
     await authClient.signIn.social({
       provider: "github",
-      callbackURL: "/",
+      callbackURL: "/canvas",
     });
   };
 

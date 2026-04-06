@@ -1,5 +1,5 @@
-import type { NextRequest } from "next/server";
 import { toNextJsHandler } from "better-auth/next-js";
+import type { NextRequest } from "next/server";
 import { getAuth } from "@/lib/auth";
 
 export const dynamic = "force-dynamic";
